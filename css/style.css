@@ -14,10 +14,11 @@
   --sans: 'Manrope', 'Segoe UI', Arial, sans-serif;
   --container: 1240px;
   --header-h: 76px;
+  --safe-top: env(safe-area-inset-top, 0px);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--safe-top)); }
 body {
   margin: 0;
   font-family: var(--sans);
@@ -72,7 +73,9 @@ p:last-child { margin-bottom: 0; }
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  height: var(--header-h);
+  height: calc(var(--header-h) + var(--safe-top));
+  padding-top: var(--safe-top);
+  box-sizing: border-box;
   background: rgba(12, 33, 36, .92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(217, 185, 127, .18);
@@ -147,7 +150,7 @@ p:last-child { margin-bottom: 0; }
 /* Меню не влезает (длинный перевод и т.п.) — бургер, как на планшете */
 .header.is-compact .nav {
   position: fixed;
-  top: var(--header-h);
+  top: calc(var(--header-h) + var(--safe-top));
   right: 0;
   left: 0;
   flex-direction: column;
@@ -171,7 +174,7 @@ p:last-child { margin-bottom: 0; }
   min-height: min(100vh, 860px);
   display: flex;
   align-items: center;
-  padding: calc(var(--header-h) + 60px) 0 80px;
+  padding: calc(var(--header-h) + var(--safe-top) + 60px) 0 80px;
   background: var(--teal-900);
   color: #f3eadb;
   overflow: hidden;
@@ -497,7 +500,7 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 1100px) {
   .nav {
     position: fixed;
-    top: var(--header-h);
+    top: calc(var(--header-h) + var(--safe-top));
     right: 0;
     left: 0;
     flex-direction: column;
@@ -540,8 +543,8 @@ p:last-child { margin-bottom: 0; }
   .strip__item { letter-spacing: .06em; }
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .card__name { font-size: 17px; letter-spacing: .03em; overflow-wrap: anywhere; }
-  .card:last-child { grid-column: 1 / -1; }
-  .card:last-child .card__img { aspect-ratio: 16 / 9; }
+  /* Карточка Gifts на телефоне не нужна: фото подарков есть в своём блоке ниже */
+  .card:last-child { display: none; }
   .hero__bg { object-position: 86% center; }
   .values { grid-template-columns: 1fr; }
   .intro, .cta__text, .contact__intro { font-size: 16px; }
