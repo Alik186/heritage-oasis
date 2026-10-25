@@ -290,10 +290,8 @@ p:last-child { margin-bottom: 0; }
 }
 .card {
   min-width: 0;
-  display: grid;
-  grid-row: span 3;
-  grid-template-rows: subgrid;
-  row-gap: 0;
+  display: flex;
+  flex-direction: column;
   background: var(--cream);
   text-decoration: none;
   border: 1px solid var(--line);
@@ -405,10 +403,6 @@ p:last-child { margin-bottom: 0; }
   gap: 24px;
 }
 .value {
-  display: grid;
-  grid-row: span 2;
-  grid-template-rows: subgrid;
-  row-gap: 0;
   padding: 32px 26px;
   background: var(--cream);
   border-top: 2px solid var(--gold);
@@ -422,6 +416,12 @@ p:last-child { margin-bottom: 0; }
   color: var(--ink);
 }
 
+
+/* Выравнивание подписей в ряду через subgrid — только на широких экранах (на телефонах Safari считает его криво) */
+@media (min-width: 1101px) {
+  .card { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+  .value { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; }
+}
 
 /* ===== CTA ===== */
 .cta {
