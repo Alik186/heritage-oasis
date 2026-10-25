@@ -520,7 +520,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (max-width: 860px) {
-  .strip__list { grid-template-columns: repeat(4, 1fr); row-gap: 26px; }
+  .strip__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 26px 14px; }
+  .strip__item { flex: 0 0 calc((100% - 3 * 14px) / 4); }
   .cards { grid-template-columns: repeat(3, 1fr); }
   .cat__inner, .gifts__inner, .contact__inner { grid-template-columns: 1fr; }
   .cat--reverse .cat__img { order: 0; }
@@ -535,7 +536,7 @@ p:last-child { margin-bottom: 0; }
   .logo__text { font-size: 17px; }
   .hero { min-height: 640px; align-items: flex-end; }
   .hero__text { font-size: 16px; }
-  .strip__list { grid-template-columns: repeat(3, 1fr); }
+  .strip__item { flex-basis: calc((100% - 2 * 14px) / 3); }
   .strip__item { letter-spacing: .06em; }
   .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .card__name { font-size: 17px; letter-spacing: .03em; overflow-wrap: anywhere; }
