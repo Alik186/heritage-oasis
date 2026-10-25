@@ -76,11 +76,13 @@ p:last-child { margin-bottom: 0; }
   height: calc(var(--header-h) + var(--safe-top));
   padding-top: var(--safe-top);
   box-sizing: border-box;
-  background: rgba(12, 33, 36, .92);
+  background: rgba(12, 33, 36, .97);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(217, 185, 127, .18);
   transition: box-shadow .25s;
 }
+/* Продолжение шапки вверх: во встроенных браузерах iPhone над ней виден проезжающий контент под плавающей панелью */
+.header::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 300px; background: rgba(12, 33, 36, .97); pointer-events: none; }
 .header.is-scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, .25); }
 .header__inner {
   height: 100%;
@@ -396,7 +398,9 @@ p:last-child { margin-bottom: 0; }
 .gifts__img { position: relative; }
 .gifts__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 860px) {
-  .gifts__img { min-height: 0; aspect-ratio: 4 / 3; }
+  /* Safari схлопывал блок с абсолютной картинкой — на узких экранах картинка в обычном потоке */
+  .gifts__img { min-height: 0; aspect-ratio: auto; }
+  .gifts__img img { position: static; display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 }
 
 /* ===== Values ===== */
@@ -528,7 +532,7 @@ p:last-child { margin-bottom: 0; }
   .cards { grid-template-columns: repeat(3, 1fr); }
   .cat__inner, .gifts__inner, .contact__inner { grid-template-columns: 1fr; }
   .cat--reverse .cat__img { order: 0; }
-  .cat__img, .gifts__img { aspect-ratio: 4 / 3; }
+  .cat__img { aspect-ratio: 4 / 3; }
   .cat__text { max-width: none; }
   .hero::after { background: linear-gradient(180deg, rgba(12, 33, 36, .55) 0%, rgba(12, 33, 36, .9) 70%); }
 }
