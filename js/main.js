@@ -24,3 +24,11 @@ onScroll();
 
 // Текущий год в подвале
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Логотип: плавно вверх страницы
+document.querySelector('.logo').addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  nav.classList.remove('is-open');
+  burger.setAttribute('aria-expanded', 'false');
+});
