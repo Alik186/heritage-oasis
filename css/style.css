@@ -201,6 +201,7 @@ p:last-child { margin-bottom: 0; }
   color: #f1e6d3;
 }
 .hero__title {
+  max-width: 8em; /* двухсловный заголовок всегда переносится на две строки, в т.ч. после автоперевода без <br> */
   font-size: clamp(36px, 8vw, 104px);
   letter-spacing: .04em;
   text-transform: uppercase;
