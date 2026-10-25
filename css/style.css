@@ -200,6 +200,7 @@ p:last-child { margin-bottom: 0; }
   letter-spacing: .1em;
   color: #f1e6d3;
 }
+.hero__title br { display: none; } /* на случай старой копии разметки: перенос задаёт только max-width */
 .hero__title {
   max-width: 8em; /* двухсловный заголовок всегда переносится на две строки, в т.ч. после автоперевода без <br> */
   font-size: clamp(36px, 8vw, 104px);
