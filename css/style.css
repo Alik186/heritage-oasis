@@ -100,6 +100,7 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
 }
 .logo__mark { width: 46px; height: 46px; flex-shrink: 0; }
+.logo__text span { display: block; }
 .logo__text {
   font-family: var(--serif);
   font-size: 21px;
